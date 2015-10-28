@@ -17,6 +17,26 @@ app.service('parseService', function($http){
   
   //postData method here
   
+  this.postData = function (argument) {
+    return $http({
+      method: 'POST',
+      url: 'https://api.parse.com/1/classes/chat',
+      data: {'text': argument}
+    });
+  };
   
   //getData method here
+  
+   this.getData = function () {
+   return $http({
+     method: 'GET',
+     url: 'https://api.parse.com/1/classes/chat?order=-createdAt'
+   }).then (function (response) {
+     var resultOfGetData = response.data.results;
+     return resultOfGetData;
+   })
+   
+ }
+ 
+ 
 });
